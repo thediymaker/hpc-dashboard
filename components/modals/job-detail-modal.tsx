@@ -2,6 +2,7 @@ import useSWR from "swr";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { Table, TableBody, TableCell, TableRow } from "../ui/table";
 import { DNA } from "react-loader-spinner";
+import { convertUnixToHumanReadable } from "@/lib/utils";
 
 const JobDetailModal = ({ open, setOpen, searchID }: any) => {
   const jobFetcher = () =>
@@ -16,12 +17,6 @@ const JobDetailModal = ({ open, setOpen, searchID }: any) => {
     error: jobError,
     isLoading: jobIsLoading,
   } = useSWR(open ? `/api/slurm/job/${searchID}` : null, jobFetcher);
-
-  function convertUnixToHumanReadable(unixTimestamp: any) {
-    const date = new Date(unixTimestamp * 1000);
-    const formattedDate = date.toLocaleString();
-    return formattedDate;
-  }
 
   if (jobError)
     return (

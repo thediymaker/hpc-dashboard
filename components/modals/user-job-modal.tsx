@@ -19,6 +19,7 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 import { useState } from "react";
+import { convertUnixToHumanReadable } from "@/lib/utils";
 
 const UserJobModal = ({ open, setOpen, searchID }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,12 +37,6 @@ const UserJobModal = ({ open, setOpen, searchID }: any) => {
     error: jobError,
     isLoading: jobIsLoading,
   } = useSWR(open ? `/api/slurm/jobs/user/${searchID}` : null, jobFetcher);
-
-  function convertUnixToHumanReadable(unixTimestamp: any) {
-    const date = new Date(unixTimestamp * 1000);
-    const formattedDate = date.toLocaleString();
-    return formattedDate;
-  }
 
   const pageCount = Math.ceil(jobData?.jobs?.length / itemsPerPage);
 
