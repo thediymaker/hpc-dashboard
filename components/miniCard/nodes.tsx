@@ -1,9 +1,8 @@
 "use client";
-import { MiniNodeCard } from "./node-card";
+import { MiniNodeCard } from "@/components/miniCard/node-card";
 import useSWR from "swr";
-import { Separator } from "@/components/ui/separator";
 import { useMemo, useState } from "react";
-import NodeHeader from "../header";
+import NodeHeader from "@/components/header";
 
 interface Node {
   alloc_memory: number;
@@ -30,7 +29,7 @@ const MiniNodes = () => {
     error: nodeError,
     isLoading: nodeIsLoading,
   } = useSWR(nodeURL, nodeFetcher, {
-    refreshInterval: 5000,
+    refreshInterval: 30000,
   });
 
   const [selectedNodeType, setSelectedNodeType] = useState<string>("allNodes");
@@ -154,8 +153,8 @@ const MiniNodes = () => {
         partitions={uniquePartitions}
         features={uniqueFeatures} // Pass unique features to the header
       />
-      <Separator />
-      <div className="flex flex-wrap p-3 uppercase mb-5 ">
+
+      <div className="flex flex-wrap p-3 uppercase mb-5 justify-center">
         {filteredNodes.map((node: any, index: number) =>
           node.gres === "" ? (
             <MiniNodeCard

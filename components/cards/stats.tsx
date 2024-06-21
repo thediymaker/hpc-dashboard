@@ -1,5 +1,5 @@
 "use client";
-import { Gauge } from "../ui/gauge";
+import { Gauge } from "@/components/ui/gauge";
 import React from "react";
 
 interface Node {
@@ -60,7 +60,7 @@ export default function Stats({ data }: any) {
 
   return (
     <div>
-      <div className="flex gap-2 mx-auto justify-center items-center mb-5 mt-16">
+      <div className="flex gap-2 mx-auto justify-center items-center mt-10 mb-5">
         <div className="w-[250px] h-[200px]">
           <Gauge
             showValue

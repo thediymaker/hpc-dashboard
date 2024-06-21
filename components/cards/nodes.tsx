@@ -1,10 +1,10 @@
 "use client";
-import { NodeCard } from "./node-card";
+import { NodeCard } from "@/components/cards/node-card";
 import useSWR from "swr";
 import { Separator } from "@/components/ui/separator";
 import { useMemo, useState } from "react";
-import Stats from "./stats";
-import NodeHeader from "../header";
+import Stats from "@/components/cards/stats";
+import NodeHeader from "@/components/header";
 
 interface Node {
   alloc_memory: number;
@@ -31,7 +31,7 @@ const Nodes = () => {
     error: nodeError,
     isLoading: nodeIsLoading,
   } = useSWR(nodeURL, nodeFetcher, {
-    refreshInterval: 5000,
+    refreshInterval: 30000,
   });
 
   const [selectedNodeType, setSelectedNodeType] = useState<string>("allNodes");
@@ -166,7 +166,7 @@ const Nodes = () => {
         features={uniqueFeatures} // Pass unique features to the header
       />
       <Stats data={nodeData} />
-      <div className="text-xl font-bold uppercase p-3 mb-5">
+      <div className="text-xl font-bold uppercase p-3">
         GPU Systems : <span className="text-blue-400">{totalGpuNodes}</span>
       </div>
       <Separator />

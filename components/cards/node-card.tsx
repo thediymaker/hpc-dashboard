@@ -1,12 +1,11 @@
-import { SeparatorMed } from "@/components/ui/separator-med";
-import IconComponent from "./gpu-icon";
+import IconComponent from "@/components/cards/gpu-icon";
 import { useState } from "react";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "../ui/hover-card";
-import NodeCardModal from "../modals/card-job-modal";
+} from "@/components/ui/hover-card";
+import NodeCardModal from "@/components/modals/card-job-modal";
 import {
   getStatusDef,
   parseGpuAllocations,
@@ -23,13 +22,6 @@ function CardContent(props: BaseCardProps) {
       <p className="font-extralight text-xs">
         MEM: {props.memoryUsed} / {props.memoryTotal}
       </p>
-      {props.gpuUsed !== undefined &&
-        props.gpuTotal !== undefined &&
-        props.gpuTotal !== 0 && (
-          <p className="font-extralight text-xs">
-            GPU: {props.gpuUsed} / {props.gpuTotal}
-          </p>
-        )}
     </>
   );
 }
@@ -91,16 +83,15 @@ export const NodeCard = ({
   return (
     <HoverCard>
       <div
-        className="border-[1px] cursor-pointer m-2 p-2 rounded-[5px] bg-card text-card-foreground shadow-xl w-full sm:w-[200px]"
+        className="border-1 cursor-pointer m-1 p-1 rounded-[5px] bg-card text-card-foreground shadow-xl w-full sm:w-[160px]"
         onClick={openModal}
       >
         <div className="p-1 items-center justify-center">
           <div className="flex justify-between">
-            <div className="text-xl font-bold pb-1">{name}</div>
+            <div className="text-lg font-bold pb-1">{name}</div>
           </div>
-          <SeparatorMed />{" "}
           <HoverCardTrigger asChild>
-            <div className="text-sm p-1">
+            <div className="text-xs p-1">
               <CardContent
                 name={name}
                 load={load}
@@ -123,7 +114,7 @@ export const NodeCard = ({
             </div>
           </HoverCardTrigger>
           <div className="text-sm font-light">
-            <p className={`${color} rounded-[5px] text-center mt-2 p-1`}>
+            <p className={`${color} rounded-md text-center mt-2 p-1`}>
               {status}
             </p>
           </div>

@@ -1,8 +1,13 @@
 import Link from "next/link";
-import JobSearch from "./job-search";
-import { Button } from "./ui/button";
+import JobSearch from "@/components/job-search";
 import { usePathname } from "next/navigation";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
@@ -19,7 +24,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 const NodeHeader = ({
   handleNodeStateChange,
@@ -33,12 +38,12 @@ const NodeHeader = ({
   const pathname = usePathname();
 
   return (
-    <div className="mt-3 justify-between flex ">
+    <div className="mt-3 justify-between flex mb-5">
       <div className="mr-2">
         <JobSearch />
       </div>
       <Form {...form}>
-        <form className="mx-1 mb-4 flex items-center justify-end">
+        <form className="mx-1 flex items-center justify-end">
           <FormField
             control={form.control}
             name="nodes"
@@ -193,6 +198,7 @@ const NodeHeader = ({
             </DropdownMenuItem>
             <DropdownMenuItem className="font-light ">
               <Link
+                target="_blank"
                 href={"https://github.com/thediymaker/slurm-node-dashboard"}
               >
                 Github

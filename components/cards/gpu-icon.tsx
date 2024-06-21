@@ -16,7 +16,7 @@ const IconComponent: React.FC<IconComponentProps> = ({
     for (let i = 1; i <= num_total; i++) {
       const iconColor = i <= num_used ? "text-red-500" : "text-gray-400";
 
-      icons.push(<CpuIcon key={i} className={`${iconColor}`} />);
+      icons.push(<CpuIcon size={"20"} key={i} className={`${iconColor}`} />);
     }
 
     return icons;
