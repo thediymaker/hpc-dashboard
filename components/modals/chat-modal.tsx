@@ -12,6 +12,7 @@ import { useActions, useUIState } from "ai/rsc";
 import { BotMessage, UserMessage } from "@/components/llm/message";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { useEffect, useRef } from "react";
+import { Separator } from "../ui/separator";
 
 const chatSchema = z.object({
   message: z.string().min(1, "Message cannot be empty"),
@@ -95,9 +96,10 @@ export default function ChatModal({ showChat, setShowChat }: any) {
     <>
       {showChat && (
         <Dialog open={showChat} onOpenChange={setShowChat}>
-          <DialogContent className="border shadow-xl w-[1200px] max-w-[80%] h-[1200px] max-h-[80%] flex flex-col p-0">
-            <div className="p-5">
+          <DialogContent className="border-4 shadow-xl w-[1200px] max-w-[80%] h-[1200px] max-h-[80%] flex flex-col p-0 border-gray">
+            <div className="p-3 px-5">
               <h1 className="text-2xl mb-2 font-extralight">Slurm Chat</h1>
+              <Separator />
             </div>
             <div
               ref={chatContainerRef}

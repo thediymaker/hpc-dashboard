@@ -145,7 +145,7 @@ const MiniNodes = () => {
     );
 
   return (
-    <div>
+    <div className="">
       <NodeHeader
         handleNodeStateChange={handleNodeStateChange}
         handleNodeTypeChange={handleNodeTypeChange}
@@ -155,7 +155,7 @@ const MiniNodes = () => {
         features={uniqueFeatures} // Pass unique features to the header
       />
       <Separator />
-      <div className="flex flex-wrap p-3 uppercase mb-5">
+      <div className="flex flex-wrap p-3 uppercase mb-5 ">
         {filteredNodes.map((node: any, index: number) =>
           node.gres === "" ? (
             <MiniNodeCard

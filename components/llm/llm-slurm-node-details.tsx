@@ -15,18 +15,19 @@ export function SlurmNodeDetails({ node }: SlurmJobDetailsProps) {
       </div>
     );
   const nodeInfo = node.nodes[0];
+
+  console.log(nodeInfo);
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full mx-auto">
       <div className="flex items-center gap-4 bg-muted/50 px-6 py-4 mx-auto">
-        <Computer className="w-8 h-8" />
         <div className="grid gap-1">
-          <CardTitle>
+          <CardTitle className="font-extralight">
             Node: <span className="text-blue-500">{nodeInfo.name}</span>
           </CardTitle>
         </div>
       </div>
-      <Separator className="bg-gray-500 w-[90%] mx-auto" />
-      <CardContent className="p-6 grid gap-4">
+      <Separator className="bg-gray-500 w-[95%] mx-auto" />
+      <CardContent className="p-6 grid gap-2">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="grid gap-1">
             <div className="text-sm text-muted-foreground">Name</div>
@@ -34,18 +35,18 @@ export function SlurmNodeDetails({ node }: SlurmJobDetailsProps) {
           </div>
           <div className="grid gap-1">
             <div className="text-sm text-muted-foreground">Cores</div>
-            <div>{nodeInfo.cores}</div>
+            <div>{nodeInfo.cpus}</div>
           </div>
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="grid gap-1">
             <div className="text-sm text-muted-foreground">CPU Load</div>
-            <div>{nodeInfo.cpu_load}%</div>
+            <div>{(nodeInfo.cpu_load / nodeInfo.cpus).toFixed(2)}%</div>
           </div>
           <div className="grid gap-1">
             <div className="text-sm text-muted-foreground">State</div>
             {nodeInfo.state.map((state: string, index: number) => (
-              <div key={index} className="text-green-500">
+              <div key={index} className="text-blue-500">
                 {state}
               </div>
             ))}
@@ -53,14 +54,40 @@ export function SlurmNodeDetails({ node }: SlurmJobDetailsProps) {
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="grid gap-1">
-            <div className="text-sm text-muted-foreground">Partitions</div>
-            {nodeInfo.partitions.map((partition: string, index: number) => (
-              <div key={index}>{partition}</div>
-            ))}
+            <div className="text-sm text-muted-foreground">Features</div>
+            <div className="flex items-start">
+              {nodeInfo.features.map((feature: any, index: any) => (
+                <div
+                  className="p-1  border-2 border-gray-500 rounded-lg m-1 text-sm font-extralight w-fit h-fit"
+                  key={index}
+                >
+                  {feature}
+                </div>
+              ))}
+            </div>
           </div>
+          <div className="grid gap-1">
+            <div className="text-sm text-muted-foreground">Partitions</div>
+            <div className="flex items-start">
+              {nodeInfo.partitions.map((partition: any, index: any) => (
+                <div
+                  className="p-1 border-2 border-gray-500 rounded-lg m-1 text-sm font-extralight w-fit h-fit"
+                  key={index}
+                >
+                  {partition}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
           <div className="grid gap-1">
             <div className="text-sm text-muted-foreground">Real Memory</div>
             <div>{nodeInfo.real_memory} MB</div>
+          </div>
+          <div className="grid gap-1">
+            <div className="text-sm text-muted-foreground">Architecture</div>
+            <div>{nodeInfo.architecture}</div>
           </div>
         </div>
         <div className="grid sm:grid-cols-2 gap-4">

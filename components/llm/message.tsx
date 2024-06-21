@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 export function UserMessage({ children }: { children: ReactNode }) {
   return (
-    <div className="group relative flex items-center md:ml-12">
+    <div className="group relative flex items-center md:ml-0">
       <div className="flex h-8 shrink-0 select-none items-center justify-center rounded-md border shadow-sm bg-background w-8">
         <UserIcon />
       </div>
@@ -23,7 +23,7 @@ export function BotMessage({
   className?: string;
 }) {
   return (
-    <div className={cn("group relative flex items-center md:ml-12", className)}>
+    <div className={cn("group relative flex items-center md:ml-0", className)}>
       <div className="flex h-8 shrink-0 select-none items-center justify-center rounded-md border shadow-sm bg-background w-8">
         <SparklesIcon />
       </div>
@@ -42,7 +42,7 @@ export function BotCard({
   showAvatar?: boolean;
 }) {
   return (
-    <div className="group relative flex items-start md:ml-12">
+    <div className="group relative flex items-start md:ml-0">
       {showAvatar && (
         <div
           className={cn(
