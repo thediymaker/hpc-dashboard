@@ -83,7 +83,7 @@ export const NodeCard = ({
   return (
     <HoverCard>
       <div
-        className="border-1 cursor-pointer m-1 p-1 rounded-[5px] bg-card text-card-foreground shadow-xl w-full sm:w-[160px]"
+        className="border-1 cursor-pointer m-1 p-1 rounded-[5px] bg-card text-card-foreground shadow-xl w-full sm:w-[175px]"
         onClick={openModal}
       >
         <div className="p-1 items-center justify-center">
